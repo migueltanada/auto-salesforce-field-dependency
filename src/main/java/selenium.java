@@ -35,34 +35,34 @@ public class basicTitleTest {
 	
 
 	// Type -> Sub-type
-	// public String url = "https://mydomain.lightning.force.com/lightning/setup/ObjectManager/Case/FieldsAndRelationships/editDependency?controller=Type&dependent=<sub-type field ID>";
+	public String url = "https://mydomain.lightning.force.com/lightning/setup/ObjectManager/Case/FieldsAndRelationships/editDependency?controller=Type&dependent=<sub-type field ID>";
 
 
 	public static void main(String[] args) throws IOException, java.lang.InterruptedException
-  {
+	{
 
-    // if chromedriver is not in your system $PATH
-		// System.setProperty("webdriver.chrome.driver", "~/chromedriver");
+		if chromedriver is not in your system $PATH
+		System.setProperty("webdriver.chrome.driver", "~/chromedriver");
 
 
-    // List in csv
-    /* in type,sub-type
-       type1,sub-type2
-       type2,sub-type1
-       type3,sub-type1
-       ...
-     */
+		// List in csv
+		/* in type,sub-type
+		  type1,sub-type2
+		  type2,sub-type1
+		  type3,sub-type1
+		  ...
+		 */
      
-    List<String> list=new LinkedList<String>(); 
+		List<String> list=new LinkedList<String>(); 
 		TimeUnit time = TimeUnit.SECONDS; 
-	
+
 		WebDriver driver = new ChromeDriver();
 		driver.get(url);
 
 
 		String xpath;
     
-    // INCLUDE BUTTON XPATH
+		// INCLUDE BUTTON XPATH
 		String include = "//*[@id=\"ep\"]/div[2]/div[6]/table/tbody/tr[1]/td/div/input[1]";
 	
 
@@ -74,18 +74,19 @@ public class basicTitleTest {
 
 		// Wait for element to load
 		WebElement element = (new WebDriverWait(driver, 60)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//iframe[@title='Edit Field Dependency ~ Salesforce - Unlimited Edition']")));
-
-    // switch to iFrame
-    driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@title='Edit Field Dependency ~ Salesforce - Unlimited Edition']")));
-
+		
+		// switch to iFrame
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@title='Edit Field Dependency ~ Salesforce - Unlimited Edition']")));
+		
 		//Wait for next button to be available
 		WebElement waitNext = (new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'Next')]")));
 		
-    // variable for reading csv
-    String []csv;
+		
+		// variable for reading csv
+		String []csv;
 
 
-    // loop through csv list
+		// loop through csv list
 		for(String subType:list){
 
 			csv = subType.split(",");
